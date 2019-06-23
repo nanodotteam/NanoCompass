@@ -7,3 +7,6 @@ You can change if compass is displayed for you using /mcompass wylacz (OFF) or /
 
 # Contributing
 Firstly contact our team on discord -- https://discord.gg/mBjFXxs -- and then make a Pull Request with your changes.
+
+# Errors
+If you have any erros with NanoCompass plugins just go to our discord -- https://discord.gg/mBjFXxs -- and say about your problem or open issue there on github.
