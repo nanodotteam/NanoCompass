@@ -1,0 +1,6 @@
+name: MCompass
+version: 1.2.0
+main: pl.krzmaciek.mcompass.MCompass
+commands:
+  mcompass:
+    aliases: [mcps]
