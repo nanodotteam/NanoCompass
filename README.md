@@ -12,5 +12,6 @@ Firstly contact our team on discord -- https://discord.gg/mBjFXxs -- and then ma
 If you have any erros with NanoCompass plugins just go to our discord -- https://discord.gg/mBjFXxs -- and say about your problem or open issue there on github.
 
 # Terms of using NanoDot. Team's plugins
-1. Do not claim plugin as your own.
-2. You can make modifications and download/upload plugin where you want, it just needs to be FREE and OPEN-SOURCE. You also must add text "Plugin made by NanoDot. Team -- https://github.com/nanodot-team" somewhere in your README.md or somewhere in page. It needs to have same font size and same colour (just needs to be visible).
+You must follow Creative Commons CC BY-NC-SA rules.
+https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png
+Additionaly you must add a link to our team in place, where you share our plugin(s) or adapted form of our plugin(s). Text must have same colour and same font-size as rest of the website text. If you're not sure about our terms you could ask us about it on NanoDot. discord -- https://discord.gg/mBjFXxs.
