@@ -1,4 +1,4 @@
-package pl.krzmaciek.mcompass;
+package pl.krzmaciek.nanocompass;
 
 import java.util.List;
 
@@ -12,10 +12,10 @@ import net.md_5.bungee.api.ChatColor;
 
 public class ToggleCommand implements CommandExecutor {
 
-	private MCompass plugin;
+	private NanoCompass plugin;
 	private FileConfiguration pluginConfig;
 	
-	public ToggleCommand(MCompass plugin) {
+	public ToggleCommand(NanoCompass plugin) {
 		this.plugin = plugin;
 		this.pluginConfig = plugin.getPluginConfig();
 	}
@@ -23,7 +23,7 @@ public class ToggleCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
-		if(command.getName().equalsIgnoreCase("mcompass")) {
+		if(command.getName().equalsIgnoreCase("nanocompass")) {
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
 				
@@ -62,7 +62,7 @@ public class ToggleCommand implements CommandExecutor {
 					
 				} else {
 					
-					player.sendMessage(ChatColor.GREEN + "Poprawne u¿ycie: /mcompass [wlacz|wylacz]");
+					player.sendMessage(ChatColor.GREEN + "Poprawne u¿ycie: /nanocompass [wlacz|wylacz]");
 					
 				}
 				

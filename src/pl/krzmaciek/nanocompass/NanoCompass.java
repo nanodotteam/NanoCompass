@@ -1,9 +1,9 @@
-package pl.krzmaciek.mcompass;
+package pl.krzmaciek.nanocompass;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class MCompass extends JavaPlugin {
+public class NanoCompass extends JavaPlugin {
 
 	private FileConfiguration pluginConfig;
 	
@@ -16,7 +16,7 @@ public class MCompass extends JavaPlugin {
 		
 		if(this.getConfig().getBoolean("plugin-enabled")) {
 			getServer().getPluginManager().registerEvents(new YawEvent(this), this);
-			getServer().getPluginCommand("mcompass").setExecutor(new ToggleCommand(this));
+			getServer().getPluginCommand("nanocompass").setExecutor(new ToggleCommand(this));
 		}
 		getLogger().info("Plugin zostal uruchomiony!");
 	}

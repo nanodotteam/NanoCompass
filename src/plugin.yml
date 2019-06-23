@@ -1,6 +1,6 @@
-name: MCompass
+name: NanoCompass
 version: 1.2.0
-main: pl.krzmaciek.mcompass.MCompass
+main: pl.krzmaciek.nanocompass.NanoCompass
 commands:
-  mcompass:
-    aliases: [mcps]
+  nanocompass:
+    aliases: [ncps]

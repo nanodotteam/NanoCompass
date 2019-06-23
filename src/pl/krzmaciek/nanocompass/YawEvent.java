@@ -1,4 +1,4 @@
-package pl.krzmaciek.mcompass;
+package pl.krzmaciek.nanocompass;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class YawEvent implements Listener {
 			
 	private FileConfiguration pluginConfig;
 	
-	public YawEvent(MCompass plugin) {
+	public YawEvent(NanoCompass plugin) {
 		pluginConfig = plugin.getPluginConfig();
 	}
 	
