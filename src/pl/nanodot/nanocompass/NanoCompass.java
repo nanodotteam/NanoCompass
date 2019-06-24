@@ -1,4 +1,4 @@
-package pl.krzmaciek.nanocompass;
+package pl.nanodot.nanocompass;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,10 +14,12 @@ public class NanoCompass extends JavaPlugin {
 		
 		pluginConfig = this.getConfig();
 		
+		// If plugin-enable setting in config is true then register event and command
 		if(this.getConfig().getBoolean("plugin-enabled")) {
 			getServer().getPluginManager().registerEvents(new YawEvent(this), this);
 			getServer().getPluginCommand("nanocompass").setExecutor(new ToggleCommand(this));
 		}
+		
 		getLogger().info("Plugin zostal uruchomiony!");
 	}
 	

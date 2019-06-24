@@ -1,4 +1,4 @@
-package pl.krzmaciek.nanocompass;
+package pl.nanodot.nanocompass;
 
 import java.util.List;
 
@@ -25,6 +25,7 @@ public class YawEvent implements Listener {
 		pluginConfig = plugin.getPluginConfig();
 	}
 	
+	// Calculate and return the direction
 	private String getCardinalDirection(Player player) {
 		double rotation = (player.getLocation().getYaw() - 90) % 360;
 		
@@ -55,6 +56,7 @@ public class YawEvent implements Listener {
 		}				
 	}
 	
+	// Send actionbar with direction to player when he move
 	@EventHandler
 	public void onMove(PlayerMoveEvent event) {
 		
@@ -66,7 +68,8 @@ public class YawEvent implements Listener {
 			
 			String cardinalDirection = getCardinalDirection(player);
 
-			player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GRAY + "-[---- " + cardinalDirection + ChatColor.GRAY + " ----]-"));                       
+			player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GRAY + "-[---- " + cardinalDirection + ChatColor.GRAY + " ----]-"));   
+			
 		}
 		
 	}

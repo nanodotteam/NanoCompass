@@ -1,4 +1,4 @@
-package pl.krzmaciek.nanocompass;
+package pl.nanodot.nanocompass;
 
 import java.util.List;
 
@@ -27,9 +27,8 @@ public class ToggleCommand implements CommandExecutor {
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
 				
+				// Enable player's compass
 				if(args[0].equalsIgnoreCase("wlacz")) {
-					
-					plugin.getLogger().info("Gracz " + player.getName() + " wlaczyl kompas!");
 					
 					if(pluginConfig.getStringList("disabled").contains(player.getName())) {
 						
@@ -38,6 +37,8 @@ public class ToggleCommand implements CommandExecutor {
 						//plugin.getConfig().getStringList("disabled").remove(player.getName().toString());
 						
 						pluginConfig.set("disabled", playersDisabled);
+						plugin.getLogger().info("Gracz " + player.getName() + " wlaczyl kompas!");
+						player.sendMessage(ChatColor.GREEN + "W³¹czono kompas.");
 						
 					} else {
 						
@@ -45,9 +46,8 @@ public class ToggleCommand implements CommandExecutor {
 						
 					}
 					
+				// Disable player's compass
 				} else if (args[0].equalsIgnoreCase("wylacz")) {
-					
-					plugin.getLogger().info("Gracz " + player.getName() + " wylaczyl kompas!");
 					
 					if(!pluginConfig.getStringList("disabled").contains(player.getName())) {
 						
@@ -55,6 +55,8 @@ public class ToggleCommand implements CommandExecutor {
 						playersDisabled.add(player.getName().toString());
 						
 						pluginConfig.set("disabled", playersDisabled);
+						plugin.getLogger().info("Gracz " + player.getName() + " wylaczyl kompas!");
+						player.sendMessage(ChatColor.GREEN + "Wy³¹czono kompas.");
 						
 					} else {
 						player.sendMessage(ChatColor.RED + "Kompas jest ju¿ wy³¹czony!");
