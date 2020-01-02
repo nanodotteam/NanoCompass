@@ -22,7 +22,7 @@ You can change if compass is displayed for you using /nanocompass wylacz (OFF) o
 Just contact our team on Discord, then we will discuss about your improvments and hopefully after that you'll just need to make pull request. 
 
 ## Bugs
-If you would find a bug just go to NanoDot Discord and tell us about it. Different way of reporting but is opening issue there, on GitHub. 
+If you would find a bug just go to NanoDot Discord and tell us about it. Different way of reporting is opening issue there, on GitHub. 
 
 # Important links
 - NanoDot Discord - https://discord.gg/mBjFXxs
