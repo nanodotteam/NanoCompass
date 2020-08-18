@@ -32,6 +32,7 @@ public final class NanoCompass extends JavaPlugin {
                 getLogger().warning("No translation " + neededText);
                 getLogger().warning("Disabling plugin!");
                 getPluginLoader().disablePlugin(this);
+                return;
             }
         }
 
