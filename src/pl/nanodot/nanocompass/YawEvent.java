@@ -8,7 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 
@@ -52,7 +52,7 @@ public class YawEvent implements Listener {
 		} else if (337.5 <= rotation && rotation < 360.0) {
 			return west; // west
 		} else {
-			return "";
+			return null; // Null?
 		}				
 	}
 	
@@ -71,20 +71,5 @@ public class YawEvent implements Listener {
 			player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GRAY + "-[---- " + cardinalDirection + ChatColor.GRAY + " ----]-"));   
 			
 		}
-		
 	}
-	
-// Alternative way to send actionbar to player
-//
-//	public void sendActionbar(Player player, String msg) {
-//		
-//		msg = ChatColor.GRAY + "[======  " + msg + ChatColor.GRAY + "  ======]";
-//		IChatBaseComponent icbc = ChatSerializer.a("{\"text\":\"" + msg + "\"}");
-//		PacketPlayOutTitle packet = new PacketPlayOutTitle(EnumTitleAction.ACTIONBAR, icbc, 20, 60, 20);
-//		
-//		((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
-//		
-//	}		
-//}
-	
 }
