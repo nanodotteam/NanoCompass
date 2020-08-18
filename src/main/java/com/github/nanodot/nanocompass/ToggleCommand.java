@@ -21,39 +21,37 @@ public class ToggleCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        
+        if(sender instanceof Player) {
+            Player player = (Player) sender;
 
-        if(command.getName().equalsIgnoreCase("nanocompass")) {
-            if(sender instanceof Player) {
-                Player player = (Player) sender;
+            // Enable player's compass
+            if (args[0].equalsIgnoreCase(languageConfig.getString("turn_on"))) {
+                if (pluginConfig.getStringList("disabled").contains(player.getName())) {
+                    List<String> playersDisabled = pluginConfig.getStringList("disabled");
+                    playersDisabled.remove(player.getName());
+                    pluginConfig.set("disabled", playersDisabled);
+                    player.sendMessage(ChatColor.GREEN + languageConfig.getString("compass_enabled"));
+                } else {
+                    player.sendMessage(ChatColor.RED + languageConfig.getString("already_enabled"));
+                }
 
-                // Enable player's compass
-                if (args[0].equalsIgnoreCase(languageConfig.getString("turn_on"))) {
-                    if (pluginConfig.getStringList("disabled").contains(player.getName())) {
-                        List<String> playersDisabled = pluginConfig.getStringList("disabled");
-                        playersDisabled.remove(player.getName());
-                        pluginConfig.set("disabled", playersDisabled);
-                        player.sendMessage(ChatColor.GREEN + languageConfig.getString("compass_enabled"));
-                    } else {
-                        player.sendMessage(ChatColor.RED + languageConfig.getString("already_enabled"));
-                    }
+            } else if (args[0].equalsIgnoreCase(languageConfig.getString("turn_off"))) {
+                if (!pluginConfig.getStringList("disabled").contains(player.getName())) {
 
-                } else if (args[0].equalsIgnoreCase(languageConfig.getString("turn_off"))) {
-                    if (!pluginConfig.getStringList("disabled").contains(player.getName())) {
+                    List<String> playersDisabled = pluginConfig.getStringList("disabled");
+                    playersDisabled.add(player.getName());
 
-                        List<String> playersDisabled = pluginConfig.getStringList("disabled");
-                        playersDisabled.add(player.getName());
-
-                        pluginConfig.set("disabled", playersDisabled);
-                        player.sendMessage(ChatColor.RED + languageConfig.getString("compass_disabled"));
-
-                    } else {
-                        player.sendMessage(ChatColor.RED + languageConfig.getString("already_disabled"));
-                    }
+                    pluginConfig.set("disabled", playersDisabled);
+                    player.sendMessage(ChatColor.RED + languageConfig.getString("compass_disabled"));
 
                 } else {
-
-                    player.sendMessage(ChatColor.GREEN + languageConfig.getString("use"));
+                    player.sendMessage(ChatColor.RED + languageConfig.getString("already_disabled"));
                 }
+
+            } else {
+
+                player.sendMessage(ChatColor.GREEN + languageConfig.getString("use"));
             }
         }
         return false;
