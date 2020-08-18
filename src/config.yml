@@ -1,5 +1,6 @@
 # Change if plugin is disabled or enabled
 plugin-enabled: true
+english: true
 # List of players which had disabled compass
 disabled:
 - 'md_5'

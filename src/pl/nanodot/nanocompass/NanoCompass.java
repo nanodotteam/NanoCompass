@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class NanoCompass extends JavaPlugin {
 
 	private FileConfiguration pluginConfig;
+	public boolean isEnglish = true;
 	
 	@Override
 	public void onEnable() {
@@ -19,8 +20,19 @@ public class NanoCompass extends JavaPlugin {
 			getServer().getPluginManager().registerEvents(new YawEvent(this), this);
 			getServer().getPluginCommand("nanocompass").setExecutor(new ToggleCommand(this));
 		}
-		
-		getLogger().info("Plugin zostal uruchomiony!");
+		if(this.getConfig().getBoolean("english")){
+			isEnglish = true;
+		}
+		if(!this.getConfig().getBoolean("english")){
+			isEnglish = false;
+		}
+
+		if(isEnglish){
+			getLogger().info("Plugin enabled!");
+		} else{
+			getLogger().info("Plugin zostal uruchomiony!");
+		}
+
 	}
 	
 	@Override
