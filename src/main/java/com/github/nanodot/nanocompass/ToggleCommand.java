@@ -26,6 +26,11 @@ public class ToggleCommand implements CommandExecutor {
         if(sender instanceof Player) {
             Player player = (Player) sender;
 
+            if(args.length != 1) {
+                sender.sendMessage(colour(languageConfig.getString("use")));
+                return true;
+            }
+
             // Enable player's compass
             if (args[0].equalsIgnoreCase(languageConfig.getString("turn_on"))) {
                 if (pluginConfig.getStringList("disabled").contains(player.getName())) {
