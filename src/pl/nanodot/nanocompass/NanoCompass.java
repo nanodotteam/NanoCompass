@@ -10,28 +10,24 @@ public class NanoCompass extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
+
 		this.getConfig().options().copyDefaults(true);
 		this.saveConfig();
 		
 		pluginConfig = this.getConfig();
-		
-		// If plugin-enable setting in config is true then register event and command
-		if(this.getConfig().getBoolean("plugin-enabled")) {
-			getServer().getPluginManager().registerEvents(new YawEvent(this), this);
-			getServer().getPluginCommand("nanocompass").setExecutor(new ToggleCommand(this));
-		}
+
 		if(this.getConfig().getBoolean("english")){
 			isEnglish = true;
 		}
 		if(!this.getConfig().getBoolean("english")){
 			isEnglish = false;
 		}
-
-		if(isEnglish){
-			getLogger().info("Plugin enabled!");
-		} else{
-			getLogger().info("Plugin zostal uruchomiony!");
+		// If plugin-enable setting in config is true then register event and command
+		if(this.getConfig().getBoolean("plugin-enabled")) {
+			getServer().getPluginManager().registerEvents(new YawEvent(this), this);
+			getServer().getPluginCommand("nanocompass").setExecutor(new ToggleCommand(this));
 		}
+			getLogger().info("Plugin zostal uruchomiony!");
 
 	}
 	
