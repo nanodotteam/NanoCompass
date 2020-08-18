@@ -7,7 +7,6 @@
 NanoCompass is plugin for Spigot server which shows compass on player's actionbar made by NanoDot. Team.
 
 # Plugin functions
-- ability to globally disable/enable plugin in config
 - commands for players that allow to disable/enable compass
 - saving preferences of players to config
 
