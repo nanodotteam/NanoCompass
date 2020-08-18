@@ -13,6 +13,8 @@ public final class NanoCompass extends JavaPlugin {
 
     private FileConfiguration pluginConfig;
     public static FileConfiguration languageConfig;
+    private final String[] neededTexts = {"load_message", "turn_on", "turn_off", "use", "compass_disabled",
+    "compass_enabled", "already_enabled", "already_disabled"};
 
     @Override
     public void onEnable() {
@@ -24,6 +26,14 @@ public final class NanoCompass extends JavaPlugin {
 
         String languageCode = pluginConfig.getString("language");
         readLanguageConfig(languageCode);
+
+        for(String neededText : neededTexts) {
+            if(languageConfig.getString(neededText) == null) {
+                getLogger().warning("No translation " + neededText);
+                getLogger().warning("Disabling plugin!");
+                getPluginLoader().disablePlugin(this);
+            }
+        }
 
         // If plugin-enable setting in config is true then register event and command
         if(this.getConfig().getBoolean("plugin-enabled")) {
