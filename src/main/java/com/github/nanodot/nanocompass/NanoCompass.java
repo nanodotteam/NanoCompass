@@ -36,11 +36,8 @@ public final class NanoCompass extends JavaPlugin {
             }
         }
 
-        // If plugin-enable setting in config is true then register event and command
-        if(this.getConfig().getBoolean("plugin-enabled")) {
-            getServer().getPluginManager().registerEvents(new YawEvent(this), this);
-            getServer().getPluginCommand("nanocompass").setExecutor(new ToggleCommand(this));
-        }
+        getServer().getPluginManager().registerEvents(new YawEvent(this), this);
+        getServer().getPluginCommand("nanocompass").setExecutor(new ToggleCommand(this));
         getLogger().info(languageConfig.getString("load_message"));
     }
 
