@@ -32,9 +32,9 @@ public class ToggleCommand implements CommandExecutor {
                     List<String> playersDisabled = pluginConfig.getStringList("disabled");
                     playersDisabled.remove(player.getName());
                     pluginConfig.set("disabled", playersDisabled);
-                    player.sendMessage(ChatColor.GREEN + languageConfig.getString("compass_enabled"));
+                    player.sendMessage(""+languageConfig.getString("compass_enabled"));
                 } else {
-                    player.sendMessage(ChatColor.RED + languageConfig.getString("already_enabled"));
+                    player.sendMessage(""+languageConfig.getString("already_enabled"));
                 }
 
             } else if (args[0].equalsIgnoreCase(languageConfig.getString("turn_off"))) {
@@ -44,18 +44,18 @@ public class ToggleCommand implements CommandExecutor {
                     playersDisabled.add(player.getName());
 
                     pluginConfig.set("disabled", playersDisabled);
-                    player.sendMessage(ChatColor.RED + languageConfig.getString("compass_disabled"));
+                    player.sendMessage(""+languageConfig.getString("compass_disabled"));
 
                 } else {
-                    player.sendMessage(ChatColor.RED + languageConfig.getString("already_disabled"));
+                    player.sendMessage(""+languageConfig.getString("already_disabled"));
                 }
 
             } else {
 
-                player.sendMessage(ChatColor.GREEN + languageConfig.getString("use"));
+                player.sendMessage(""+languageConfig.getString("use"));
             }
         } else {
-            sender.sendMessage("" + languageConfig.getString("player_only_command"));
+            sender.sendMessage(""+languageConfig.getString("player_only_command"));
         }
 
         return false;
