@@ -10,9 +10,9 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 public class ToggleCommand implements CommandExecutor {
-    boolean isEnglish;
     private NanoCompass plugin;
     private FileConfiguration pluginConfig;
+    private FileConfiguration languageConfig = NanoCompass.languageConfig;
 
     public ToggleCommand(NanoCompass plugin) {
         this.plugin = plugin;
@@ -21,94 +21,39 @@ public class ToggleCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(pluginConfig.getBoolean("english")){
-            isEnglish = true;
-        } else{
-            isEnglish = false;
-        }
 
         if(command.getName().equalsIgnoreCase("nanocompass")) {
             if(sender instanceof Player) {
                 Player player = (Player) sender;
 
                 // Enable player's compass
-                if (!isEnglish) {
-
-
-                    // POLISH vvvvv
-
-
-
-                    if (args[0].equalsIgnoreCase("wlacz")) {
-                        if (pluginConfig.getStringList("disabled").contains(player.getName())) {
-                            List<String> playersDisabled = pluginConfig.getStringList("disabled");
-                            playersDisabled.remove(player.getName().toString()); // Why .toString? Player.getName returns a string already!
-                            pluginConfig.set("disabled", playersDisabled);
-                            plugin.getLogger().info("Gracz " + player.getName() + " wlaczyl kompas!");
-                            player.sendMessage(ChatColor.GREEN + "W��czono kompas.");
-                        } else {
-                            player.sendMessage(ChatColor.RED + "Kompas jest ju� w��czony!");
-                        }
-
-                    } else if (args[0].equalsIgnoreCase("wylacz")) {
-                        if (!pluginConfig.getStringList("disabled").contains(player.getName())) {
-
-                            List<String> playersDisabled = pluginConfig.getStringList("disabled");
-                            playersDisabled.add(player.getName().toString());
-
-                            pluginConfig.set("disabled", playersDisabled);
-                            plugin.getLogger().info("Gracz " + player.getName() + " wylaczyl kompas!");
-                            player.sendMessage(ChatColor.RED + "Wy��czono kompas.");
-
-                        } else {
-                            player.sendMessage(ChatColor.RED + "Kompas jest ju� wy��czony!");
-                        }
-
+                if (args[0].equalsIgnoreCase(languageConfig.getString("turn_on"))) {
+                    if (pluginConfig.getStringList("disabled").contains(player.getName())) {
+                        List<String> playersDisabled = pluginConfig.getStringList("disabled");
+                        playersDisabled.remove(player.getName());
+                        pluginConfig.set("disabled", playersDisabled);
+                        player.sendMessage(ChatColor.GREEN + languageConfig.getString("compass_enabled"));
                     } else {
-
-                        player.sendMessage(ChatColor.GREEN + "Poprawne u�ycie: /nanocompass [wlacz|wylacz]");
-
+                        player.sendMessage(ChatColor.RED + languageConfig.getString("already_enabled"));
                     }
 
+                } else if (args[0].equalsIgnoreCase(languageConfig.getString("turn_off"))) {
+                    if (!pluginConfig.getStringList("disabled").contains(player.getName())) {
 
-                    // POLISH ^^^^^
+                        List<String> playersDisabled = pluginConfig.getStringList("disabled");
+                        playersDisabled.add(player.getName());
 
-                }
-                if (isEnglish) {
-
-                    if (args[0].equalsIgnoreCase("on")) {
-
-                        if (pluginConfig.getStringList("disabled").contains(player.getName())) {
-                            List<String> playersDisabled = pluginConfig.getStringList("disabled");
-                            playersDisabled.remove(player.getName().toString());
-                            pluginConfig.set("disabled", playersDisabled);
-                            plugin.getLogger().info("Player " + player.getName() + " turned on compass!");
-                            player.sendMessage(ChatColor.GREEN + "Compass enabled.");
-                        } else {
-                            player.sendMessage(ChatColor.RED + "Compass is already enabled!");
-                        }
-
-                        // Disable player's compass
-                    } else if (args[0].equalsIgnoreCase("off")) {
-
-                        if (!pluginConfig.getStringList("disabled").contains(player.getName())) {
-
-                            List<String> playersDisabled = pluginConfig.getStringList("disabled");
-                            playersDisabled.add(player.getName().toString());
-
-                            pluginConfig.set("disabled", playersDisabled);
-                            plugin.getLogger().info("Player " + player.getName() + " turned off compass!");
-                            player.sendMessage(ChatColor.RED + "Compass disabled.");
-
-                        } else {
-                            player.sendMessage(ChatColor.RED + "Compass is already off!");
-                        }
+                        pluginConfig.set("disabled", playersDisabled);
+                        player.sendMessage(ChatColor.RED + languageConfig.getString("compass_disabled"));
 
                     } else {
-                        player.sendMessage(ChatColor.GREEN + "Correct command args: /nanocompass [on | off]");
+                        player.sendMessage(ChatColor.RED + languageConfig.getString("already_disabled"));
                     }
-                }
 
+                } else {
+
+                    player.sendMessage(ChatColor.GREEN + languageConfig.getString("use"));
+                }
             }
         }
         return false;

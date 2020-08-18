@@ -1,0 +1,8 @@
+load_message: "Plugin zostal uruchomiony!"
+turn_on: "wlacz"
+turn_off: "wylacz"
+use: "Poprawne użycie: /nanocompass [wlacz|wylacz]"
+compass_disabled: "Wyłączono kompas."
+compass_enabled: "Włączono kompas."
+already_enabled: "Kompas jest już włączony!"
+already_disabled: "Kompas jest już wyłączony!"

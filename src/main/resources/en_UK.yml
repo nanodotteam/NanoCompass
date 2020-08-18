@@ -1,0 +1,8 @@
+load_message: "Plugin enabled!"
+turn_on: "on"
+turn_off: "off"
+use: "Correct usage: /nanocompass [on|off]"
+compass_disabled: "Disabled compass."
+compass_enabled: "Enabled compass."
+already_enabled: "Compass is already enabled!"
+already_disabled: "Compass is already disabled!"

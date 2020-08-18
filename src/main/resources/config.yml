@@ -1,6 +1,6 @@
 # Change if plugin is disabled or enabled
 plugin-enabled: true
-english: true
+language: pl_PL
 # List of players which had disabled compass
 disabled:
 - 'md_5'
