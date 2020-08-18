@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ToggleCommand implements CommandExecutor {
     private NanoCompass plugin;
@@ -21,7 +22,7 @@ public class ToggleCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        
+
         if(sender instanceof Player) {
             Player player = (Player) sender;
 
@@ -53,7 +54,10 @@ public class ToggleCommand implements CommandExecutor {
 
                 player.sendMessage(ChatColor.GREEN + languageConfig.getString("use"));
             }
+        } else {
+            sender.sendMessage("" + languageConfig.getString("player_only_command"));
         }
+
         return false;
     }
 }

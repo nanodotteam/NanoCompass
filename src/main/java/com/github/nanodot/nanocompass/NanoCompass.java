@@ -14,7 +14,7 @@ public final class NanoCompass extends JavaPlugin {
     private FileConfiguration pluginConfig;
     public static FileConfiguration languageConfig;
     private final String[] neededTexts = {"load_message", "turn_on", "turn_off", "use", "compass_disabled",
-    "compass_enabled", "already_enabled", "already_disabled"};
+    "compass_enabled", "already_enabled", "already_disabled", "player_only_command"};
 
     @Override
     public void onEnable() {
