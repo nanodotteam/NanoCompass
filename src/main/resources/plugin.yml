@@ -1,7 +1,10 @@
 name: NanoCompass
 version: @version@
 main: com.github.nanodot.nanocompass.NanoCompass
-api-version: 1.13
+api-version: 1.16
+description: Plugin adds compass on actionbar.
+author: nanodot-team
 commands:
   nanocompass:
-    aliases: [ncps]
+    description: Main NanoCompass command.
+    aliases: [nc, ncps]
