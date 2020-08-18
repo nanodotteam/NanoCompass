@@ -27,7 +27,4 @@ If you would find a bug just go to NanoDot Discord and tell us about it. Differe
 - NanoDot Discord - https://discord.gg/mBjFXxs
 
 # Terms of use
-1. You must follow Creative Commons CC BY-NC-SA rules you can find there -- https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.
-2. Additionaly you must add a link to our team in place, where you share our plugin(s) or adapted form of our plugin(s). Text must have same colour and same font-size as rest of the website text.
-
-If you're not sure about our terms you could ask us about it on NanoDot discord.
+You can find project license in LICENSE file.
