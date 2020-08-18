@@ -1,0 +1,7 @@
+name: NanoCompass
+version: @version@
+main: com.github.nanodot.nanocompass.NanoCompass
+api-version: 1.13
+commands:
+  nanocompass:
+    aliases: [ncps]

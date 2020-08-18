@@ -1,4 +1,7 @@
-.settings
-bin
-.classpath
-.project
+.gradle/
+.idea/
+NanoCompass.iml
+build/
+gradle/
+gradlew
+gradlew.bat
