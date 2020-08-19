@@ -20,7 +20,7 @@ public class YawEvent implements Listener {
     }
 
     // Calculate and return the direction
-    private String getCardinalDirection(Player player) {
+    private String getCompassPart(Player player) {
         // south 0, west 90, north 180, east 270
         float playerYaw = player.getLocation().getYaw();
         int compassCenter = Math.floorMod(Math.round(playerYaw / 18), compassDirections.length);
@@ -46,17 +46,12 @@ public class YawEvent implements Listener {
     // Send actionbar with direction to player when he move
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
-
         Player player = event.getPlayer();
-
         List<String> playersDisabled = pluginConfig.getStringList("disabled");
 
         if(!playersDisabled.contains(player.getName())) {
-
-            String cardinalDirection = getCardinalDirection(player);
-
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GRAY + "-[---- " + cardinalDirection + ChatColor.GRAY + " ----]-"));
-
+            String compassPart = getCompassPart(player);
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(compassPart));
         }
     }
 }
