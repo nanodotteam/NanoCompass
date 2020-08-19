@@ -12,8 +12,8 @@ NanoCompass is plugin for Spigot server which shows compass on player's actionba
 
 # Quick tutorial
 This is the quick guide on the plugin functions.
-## Disabling or enabling entire plugin
-You can change if plugin is enabled or disabled in NanoCompass' config.yml file.
+## Change language
+You can set language by setting language: pl_PL or en_UK or other if you have your customConfigFile.yml with translation set it to customConfigFile.
 ## Commands
 You can change if compass is displayed for you using /nanocompass off or /nanocompass on commands, these options  are saved in config.yml, so after restart they do not change.
 
