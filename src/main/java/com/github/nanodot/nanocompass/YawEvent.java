@@ -12,12 +12,8 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import java.util.List;
 
 public class YawEvent implements Listener {
-    private String south = ChatColor.YELLOW + "" + ChatColor.BOLD + "S";
-    private String north = ChatColor.RED + "" + ChatColor.BOLD + "N";
-    private String east = ChatColor.GREEN + "" + ChatColor.BOLD + "E";
-    private String west = ChatColor.BLUE + "" + ChatColor.BOLD + "W";
-
-    private FileConfiguration pluginConfig;
+    private final String[] compassDirections = "S====W====N====E====".split("");
+    private final FileConfiguration pluginConfig;
 
     public YawEvent(NanoCompass plugin) {
         pluginConfig = plugin.getPluginConfig();
@@ -25,33 +21,26 @@ public class YawEvent implements Listener {
 
     // Calculate and return the direction
     private String getCardinalDirection(Player player) {
-        double rotation = (player.getLocation().getYaw() - 90) % 360;
-
-        if (rotation < 0) {
-            rotation += 360;
+        // south 0, west 90, north 180, east 270
+        float playerYaw = player.getLocation().getYaw();
+        int compassCenter = Math.floorMod(Math.round(playerYaw / 18), compassDirections.length);
+        StringBuilder compassLine = new StringBuilder();
+        for(int i = -3; i <= 3; i++) {
+            compassLine.append(getCompassChar(compassCenter + i));
         }
+        return compassLine.toString();
+    }
 
-        if (0 <= rotation && rotation < 22.5) {
-            return west; // west
-        } else if (22.5 <= rotation && rotation < 67.5) {
-            return north+west; // northwest
-        } else if (67.5 <= rotation && rotation < 112.5) {
-            return north; // north
-        } else if (112.5 <= rotation && rotation < 157.5) {
-            return north+east; // northeast
-        } else if (157.5 <= rotation && rotation < 202.5) {
-            return east; // east
-        } else if (202.5 <= rotation && rotation < 247.5) {
-            return south+east;// southeast
-        } else if (247.5 <= rotation && rotation < 292.5) {
-            return south; // south
-        } else if (292.5 <= rotation && rotation < 337.5) {
-            return south+west; // southwest
-        } else if (337.5 <= rotation && rotation < 360.0) {
-            return west; // west
+    private String getCompassChar(int charNum) {
+        int normalizedCharNum;
+        if(charNum < 0) {
+            normalizedCharNum = compassDirections.length - 1 + charNum;
+        } else if(charNum > compassDirections.length - 1) {
+            normalizedCharNum = charNum % compassDirections.length;
         } else {
-            return null; // Null?
+            normalizedCharNum = charNum;
         }
+        return compassDirections[normalizedCharNum];
     }
 
     // Send actionbar with direction to player when he move
