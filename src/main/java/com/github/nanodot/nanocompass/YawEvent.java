@@ -9,17 +9,31 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class YawEvent implements Listener {
-    private FileConfiguration pluginConfig;
+    private final FileConfiguration pluginConfig;
     private final String[] compassDirections;
     private final int compassTemplateViewSide;
 
     public YawEvent(NanoCompass plugin) {
         pluginConfig = plugin.getPluginConfig();
-        compassDirections = pluginConfig.getString("compass_template").split("");
+        compassDirections = splitWithColours(Objects.requireNonNull(pluginConfig.getString("compass_template")));
         compassTemplateViewSide = (pluginConfig.getInt("compass_template_view") - 1) / 2;
+    }
+
+    // Send actionbar with direction to player when he move
+    @EventHandler
+    public void onMove(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        List<String> playersDisabled = pluginConfig.getStringList("disabled");
+
+        if(!playersDisabled.contains(player.getName())) {
+            String compassPart = getCompassPart(player);
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(compassPart));
+        }
     }
 
     // Calculate and return the direction
@@ -46,15 +60,23 @@ public class YawEvent implements Listener {
         return compassDirections[normalizedCharNum];
     }
 
-    // Send actionbar with direction to player when he move
-    @EventHandler
-    public void onMove(PlayerMoveEvent event) {
-        Player player = event.getPlayer();
-        List<String> playersDisabled = pluginConfig.getStringList("disabled");
-
-        if(!playersDisabled.contains(player.getName())) {
-            String compassPart = getCompassPart(player);
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(compassPart));
+    private String[] splitWithColours(String toSplit) {
+        String[] splitted = toSplit.split("");
+        ArrayList<String> formatted = new ArrayList<>();
+        StringBuilder latestFormat = new StringBuilder();
+        int i = 0;
+        while(i < splitted.length) {
+            if(splitted[i].equals("&")) {
+                latestFormat.append(ChatColor.COLOR_CHAR).append(splitted[i + 1]);
+                i += 2;
+            } else {
+                while(i < splitted.length && !splitted[i].equals("&")) {
+                    formatted.add(latestFormat + splitted[i]);
+                    i++;
+                }
+                latestFormat = new StringBuilder();
+            }
         }
+        return formatted.toArray(new String[0]);
     }
 }

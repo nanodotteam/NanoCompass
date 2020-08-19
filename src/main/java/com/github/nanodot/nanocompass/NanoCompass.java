@@ -42,7 +42,6 @@ public final class NanoCompass extends JavaPlugin {
         int compassTemplateView = pluginConfig.getInt("compass_template_view");
 
         if(Objects.equals(compassTemplate, "")
-                || compassTemplateView == 0
                 || compassTemplateView % 2 == 0) {
             getLogger().warning("Compass template or compass template view set up incorrectly!");
             getLogger().warning(String.join(",", "Template:", compassTemplate,
