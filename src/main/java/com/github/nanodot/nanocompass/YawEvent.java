@@ -12,20 +12,23 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import java.util.List;
 
 public class YawEvent implements Listener {
-    private final String[] compassDirections = "S====W====N====E====".split("");
-    private final FileConfiguration pluginConfig;
+    private FileConfiguration pluginConfig;
+    private final String[] compassDirections;
+    private final int compassTemplateViewSide;
 
     public YawEvent(NanoCompass plugin) {
         pluginConfig = plugin.getPluginConfig();
+        compassDirections = pluginConfig.getString("compass_template").split("");
+        compassTemplateViewSide = (pluginConfig.getInt("compass_template_view") - 1) / 2;
     }
 
     // Calculate and return the direction
     private String getCompassPart(Player player) {
         // south 0, west 90, north 180, east 270
         float playerYaw = player.getLocation().getYaw();
-        int compassCenter = Math.floorMod(Math.round(playerYaw / 18), compassDirections.length);
+        int compassCenter = Math.floorMod(Math.round(playerYaw / (360f / compassDirections.length)), compassDirections.length);
         StringBuilder compassLine = new StringBuilder();
-        for(int i = -3; i <= 3; i++) {
+        for(int i = -compassTemplateViewSide; i <= compassTemplateViewSide; i++) {
             compassLine.append(getCompassChar(compassCenter + i));
         }
         return compassLine.toString();

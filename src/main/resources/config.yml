@@ -1,5 +1,9 @@
 # Languages to choose: Polski - pl_PL, English - en_UK
 language: pl_PL
+# Part of compass template is displayed on player's actionbar
+compass_template: "S====W====N====E===="
+# How many of compass template to display at the moment. Only odd numbers are valid.
+compass_template_view: 7
 # List of players which had disabled compass
 disabled:
 - 'md_5'

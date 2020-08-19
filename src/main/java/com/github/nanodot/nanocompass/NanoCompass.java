@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Objects;
 
 public final class NanoCompass extends JavaPlugin {
 
@@ -35,6 +36,20 @@ public final class NanoCompass extends JavaPlugin {
                 getPluginLoader().disablePlugin(this);
                 return;
             }
+        }
+
+        String compassTemplate = pluginConfig.getString("compass_template");
+        int compassTemplateView = pluginConfig.getInt("compass_template_view");
+
+        if(Objects.equals(compassTemplate, "")
+                || compassTemplateView == 0
+                || compassTemplateView % 2 == 0) {
+            getLogger().warning("Compass template or compass template view set up incorrectly!");
+            getLogger().warning(String.join(",", "Template:", compassTemplate,
+                    " Template view:", String.valueOf(compassTemplateView)));
+            getLogger().warning("Disabling plugin!");
+            getPluginLoader().disablePlugin(this);
+            return;
         }
 
         getServer().getPluginManager().registerEvents(new YawEvent(this), this);
