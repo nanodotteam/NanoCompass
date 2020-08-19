@@ -1,5 +1,6 @@
 package com.github.nanodot.nanocompass;
 
+import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -37,7 +38,9 @@ public final class NanoCompass extends JavaPlugin {
         }
 
         getServer().getPluginManager().registerEvents(new YawEvent(this), this);
-        getServer().getPluginCommand("nanocompass").setExecutor(new ToggleCommand(this));
+        PluginCommand nanoCommand = getServer().getPluginCommand("nanocompass");
+        nanoCommand.setTabCompleter(new ToggleCommandCompleter());
+        nanoCommand.setExecutor(new ToggleCommand(this));
         getLogger().info(languageConfig.getString("load_message"));
     }
 
