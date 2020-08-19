@@ -13,7 +13,7 @@ public class ToggleCommandCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         ArrayList<String> possibles = new ArrayList<>();
-        if(args.length == 0) {
+        if(args.length == 1) {
             possibles.add(langConfig.getString("turn_on"));
             possibles.add(langConfig.getString("turn_off"));
         }
